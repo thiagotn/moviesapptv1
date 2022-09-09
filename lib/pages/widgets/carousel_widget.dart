@@ -63,7 +63,7 @@ class _CarouselWidgetState extends State<CarouselWidget> {
               myFocusNode: _focusNode1,
               changeFocusLeft: _changeFocus,
               changeFocusRight: _changeFocus,
-              leftFocusNode: _focusNode5,
+              leftFocusNode: _focusNode8,
               rightFocusNode: _focusNode2,
             ),
             FocusWidget(
