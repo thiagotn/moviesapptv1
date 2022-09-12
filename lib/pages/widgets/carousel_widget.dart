@@ -52,8 +52,8 @@ class _CarouselWidgetState extends State<CarouselWidget> {
           LogicalKeySet(LogicalKeyboardKey.arrowRight): RightButtonIntent(),
           LogicalKeySet(LogicalKeyboardKey.arrowUp): UpButtonIntent(),
           LogicalKeySet(LogicalKeyboardKey.arrowDown): DownButtonIntent(),
-          LogicalKeySet(LogicalKeyboardKey.select): SelectButtonIntent(),
           LogicalKeySet(LogicalKeyboardKey.enter): EnterButtonIntent(),
+          LogicalKeySet(LogicalKeyboardKey.select): EnterButtonIntent(),
         },
         child: Row(
           children: [

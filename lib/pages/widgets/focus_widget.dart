@@ -36,6 +36,11 @@ class FocusWidget extends StatefulWidget {
 }
 
 class _FocusWidgetState extends State<FocusWidget> {
+  _navigateToDetails(BuildContext context, String imageUrl) {
+    Navigator.pushNamed(context, DetailsPage.routeName,
+        arguments: {"imageUrl": imageUrl});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Actions(
@@ -49,7 +54,7 @@ class _FocusWidgetState extends State<FocusWidget> {
               widget.changeFocusLeft(context, widget.leftFocusNode),
         ),
         EnterButtonIntent: CallbackAction<EnterButtonIntent>(
-          onInvoke: (intent) => _navigateToDetails(imageUrl: widget.imageUrl),
+          onInvoke: (intent) => _navigateToDetails(context, widget.imageUrl),
         )
       },
       child: Focus(
@@ -77,10 +82,5 @@ class _FocusWidgetState extends State<FocusWidget> {
         ),
       ),
     );
-  }
-
-  _navigateToDetails({required String imageUrl}) {
-    Navigator.pushNamed(context, DetailsPage.routeName,
-        arguments: {"imageUrl": imageUrl});
   }
 }
