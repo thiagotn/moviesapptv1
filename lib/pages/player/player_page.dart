@@ -2,6 +2,7 @@ import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/services.dart';
 import 'package:moviesapptv1/pages/player/widgets/landscape_player_controls.dart';
 import 'package:moviesapptv1/utils/mock_data.dart';
+// ignore: depend_on_referenced_packages
 import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
 
