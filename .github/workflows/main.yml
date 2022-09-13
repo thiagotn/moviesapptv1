@@ -23,7 +23,7 @@ jobs:
           git config --global user.email thiagotn@gmail.com
           git config --global user.name thiagotn
           git status
-          git remote add origin https://${{secrets.commit_secret}}@github.com/onatcipli/moviesapptv1.git
+          git remote add origin https://${{secrets.commit_secret}}@github.com/thiagotn/moviesapptv1.git
           git checkout -b gh-pages
           git add --all
           git commit -m "update"
