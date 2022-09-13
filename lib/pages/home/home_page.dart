@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moviesapptv1/pages/widgets/carousel_widget.dart';
 
 class HomePage extends StatelessWidget {
-  static var routeName = "/home";
+  static var routeName = "/";
 
   const HomePage({Key? key}) : super(key: key);
 
