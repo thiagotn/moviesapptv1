@@ -11,15 +11,26 @@ jobs:
       my_secret: ${{secrets.commit_secret}}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.3.1'
           channel: 'stable'
-      - run: flutter --version
-      - run: flutter pub get
-      - run: flutter build web --release
-      - run: |
+
+      - name: Flutter Version
+        run: flutter --version
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build Web
+        run: flutter build web --release
+
+      - name: Deploy
+        run: |
           cd build/web
           git init
           git config --global user.email thiagotn@gmail.com
