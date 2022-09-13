@@ -27,7 +27,7 @@ jobs:
         run: flutter pub get
 
       - name: Build Web
-        run: flutter build web --release --base-href /moviesapptv1/
+        run: flutter build web --web-renderer html --release --base-href /moviesapptv1/
 
       - name: Deploy
         run: |
