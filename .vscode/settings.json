@@ -1,3 +1,4 @@
 {
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "dart.flutterSdkPath": "/Users/thiago/Documents/Dev/Tools/flutter-versions/flutter_macos_2.5.3-stable"
 }
