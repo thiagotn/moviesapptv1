@@ -4,6 +4,10 @@ import 'package:moviesapptv1/pages/player/player_page.dart';
 
 class SelectButtonIntent extends Intent {}
 
+class EnterButtonIntent extends Intent {}
+
+class BackspaceButtonIntent extends Intent {}
+
 class DetailsPage extends StatefulWidget {
   static var routeName = "/details";
   final String? imageUrl;
@@ -45,10 +49,13 @@ class _DetailsPageState extends State<DetailsPage> {
       _setFirstFocus(context);
     }
 
-    Map arguments = ModalRoute.of(context)?.settings.arguments as Map;
-    String imgUrl = (arguments["imageUrl"] == null)
-        ? "https://www.themoviedb.org/t/p/w300_and_h450_bestv2_filter(blur)/z9a3b7DePtdo2E8NzyPwoGHGsYk.jpg"
-        : arguments["imageUrl"]!;
+    var imgUrl =
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2_filter(blur)/z9a3b7DePtdo2E8NzyPwoGHGsYk.jpg";
+    var argumentsObj = ModalRoute.of(context)?.settings.arguments;
+    if (argumentsObj != null) {
+      Map? arguments = argumentsObj as Map;
+      imgUrl = arguments["imageUrl"]!;
+    }
 
     return WillPopScope(
       onWillPop: () {
@@ -56,7 +63,10 @@ class _DetailsPageState extends State<DetailsPage> {
         return Future.value(true);
       },
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: const Text("Details"),
+          centerTitle: true,
+        ),
         body: Center(
           child: SingleChildScrollView(
             child: Column(
@@ -64,13 +74,24 @@ class _DetailsPageState extends State<DetailsPage> {
                 Image.network(imgUrl),
                 Shortcuts(
                   shortcuts: <LogicalKeySet, Intent>{
+                    LogicalKeySet(LogicalKeyboardKey.backspace):
+                        BackspaceButtonIntent(),
                     LogicalKeySet(LogicalKeyboardKey.select):
                         SelectButtonIntent(),
+                    LogicalKeySet(LogicalKeyboardKey.enter):
+                        EnterButtonIntent(),
                   },
                   child: Actions(
                     actions: <Type, Action<Intent>>{
+                      EnterButtonIntent: CallbackAction<EnterButtonIntent>(
+                        onInvoke: (intent) => _navigateToPlayer(context),
+                      ),
                       SelectButtonIntent: CallbackAction<SelectButtonIntent>(
                         onInvoke: (intent) => _navigateToPlayer(context),
+                      ),
+                      BackspaceButtonIntent:
+                          CallbackAction<BackspaceButtonIntent>(
+                        onInvoke: (intent) => Navigator.of(context).pop(),
                       ),
                     },
                     child: Focus(
