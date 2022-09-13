@@ -72,7 +72,10 @@ class _FocusWidgetState extends State<FocusWidget> {
                 : null,
           ),
           child: TextButton(
-            onPressed: null, //_navigateToDetails(imageUrl: widget.imageUrl),
+            onPressed: () {
+              Navigator.pushNamed(context, DetailsPage.routeName,
+                  arguments: {"imageUrl": widget.imageUrl});
+            },
             child: Image.network(
               widget.imageUrl,
               width: 150,
