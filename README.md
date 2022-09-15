@@ -1,6 +1,8 @@
 # moviesapptv1
 
-POC of AndroidTV APP
+POC of AndroidTV APP:
+
+https://thiagotn.github.io/moviesapptv1
 
 ## Getting Started
 
