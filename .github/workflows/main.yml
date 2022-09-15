@@ -32,6 +32,10 @@ jobs:
       - name: Deploy
         run: |
           cd build/web
+          sed -i "s|/icons/Icon-192.png|/moviesapptv1/icons/Icon-192.png|g" index.html
+          sed -i "s|/favicon.png|/moviesapptv1/favicon.png|g" index.html
+          sed -i "s|/manifest.json|/moviesapptv1/manifest.json|g" index.html
+          sed -i "s|/flutter.js|/moviesapptv1/flutter.js|g" index.html
           git init
           git config --global user.email thiagotn@gmail.com
           git config --global user.name thiagotn

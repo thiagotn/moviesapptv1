@@ -17,9 +17,14 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Run
 
-### Web
+### Web Local
 
     flutter run -d chrome --web-renderer html
+
+
+### Build Web Release
+
+    flutter build web --web-renderer html --release --base-href /moviesapptv1/
 
 ### Android TV
 
