@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moviesapptv1/pages/home/home_page.dart';
+import 'package:moviesapptv1/pages/pages/movies/movies_page.dart';
 
 class SplashPage extends StatelessWidget {
   static var routeName = "/";
@@ -12,9 +12,9 @@ class SplashPage extends StatelessWidget {
         seconds: 1,
       ),
       () {
-        Navigator.popAndPushNamed(
+        Navigator.pushReplacementNamed(
           context,
-          HomePage.routeName,
+          MoviesPage.routeName,
         );
       },
     );

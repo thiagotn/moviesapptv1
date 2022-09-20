@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:moviesapptv1/pages/player/player_page.dart';
+import 'package:moviesapptv1/pages/widgets/title_widget.dart';
 
-class SelectButtonIntent extends Intent {}
-
-class EnterButtonIntent extends Intent {}
-
-class BackspaceButtonIntent extends Intent {}
-
-class DetailsPage extends StatefulWidget {
+class DetailsPage extends StatelessWidget {
   static var routeName = "/details";
   final String? imageUrl;
 
@@ -18,37 +12,7 @@ class DetailsPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<DetailsPage> createState() => _DetailsPageState();
-}
-
-class _DetailsPageState extends State<DetailsPage> {
-  FocusNode? _focusNode1;
-  FocusNode? _focusNode2;
-
-  _setFirstFocus(BuildContext context) {
-    if (_focusNode1 == null) {
-      _focusNode1 = FocusNode();
-      _focusNode2 = FocusNode();
-      FocusScope.of(context).requestFocus(_focusNode2);
-    }
-  }
-
-  _changeFocus(BuildContext context, FocusNode? focusNode) {
-    FocusScope.of(context).requestFocus(focusNode);
-    setState(() {});
-  }
-
-  @override
   Widget build(BuildContext context) {
-    _navigateToPlayer(BuildContext context) {
-      print("_navigateToPlayer...");
-      Navigator.pushNamed(context, PlayerPage.routeName);
-    }
-
-    if (_focusNode1 == null) {
-      _setFirstFocus(context);
-    }
-
     var imgUrl =
         "https://www.themoviedb.org/t/p/w300_and_h450_bestv2_filter(blur)/z9a3b7DePtdo2E8NzyPwoGHGsYk.jpg";
     var argumentsObj = ModalRoute.of(context)?.settings.arguments;
@@ -71,80 +35,29 @@ class _DetailsPageState extends State<DetailsPage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Image.network(imgUrl),
-                Shortcuts(
-                  shortcuts: <LogicalKeySet, Intent>{
-                    LogicalKeySet(LogicalKeyboardKey.backspace):
-                        BackspaceButtonIntent(),
-                    LogicalKeySet(LogicalKeyboardKey.select):
-                        SelectButtonIntent(),
-                    LogicalKeySet(LogicalKeyboardKey.enter):
-                        EnterButtonIntent(),
+                TitleWidget(imageUrl: imgUrl),
+                InkWell(
+                  autofocus: true,
+                  focusColor: Colors.red,
+                  highlightColor: Colors.white,
+                  hoverColor: Colors.orange,
+                  onTap: () {
+                    Navigator.pushNamed(context, PlayerPage.routeName);
                   },
-                  child: Actions(
-                    actions: <Type, Action<Intent>>{
-                      EnterButtonIntent: CallbackAction<EnterButtonIntent>(
-                        onInvoke: (intent) => _navigateToPlayer(context),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.play_arrow,
+                        color: Colors.white,
+                        size: 30.0,
                       ),
-                      SelectButtonIntent: CallbackAction<SelectButtonIntent>(
-                        onInvoke: (intent) => _navigateToPlayer(context),
-                      ),
-                      BackspaceButtonIntent:
-                          CallbackAction<BackspaceButtonIntent>(
-                        onInvoke: (intent) => Navigator.of(context).pop(),
-                      ),
-                    },
-                    child: Focus(
-                      focusNode: _focusNode2,
-                      autofocus: true,
-                      child: Container(
-                        width: 180,
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.secondary,
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          border: (_focusNode2 != null && _focusNode2!.hasFocus)
-                              ? Border.all(
-                                  width: 5,
-                                  color: Colors.white,
-                                )
-                              : null,
-                        ),
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                            textStyle: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 10,
-                              horizontal: 15,
-                            ),
-                          ),
-                          onPressed: () {
-                            Navigator.pushNamed(context, PlayerPage.routeName);
-                          },
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Icon(
-                                Icons.play_arrow,
-                                color: Colors.white,
-                                size: 30.0,
-                              ),
-                              Text(
-                                "Assistir",
-                                style: Theme.of(context).textTheme.button,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                      Text(
+                        "Assistir",
+                        style: Theme.of(context).textTheme.button,
+                      )
+                    ],
                   ),
                 ),
               ],
@@ -153,12 +66,5 @@ class _DetailsPageState extends State<DetailsPage> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _focusNode1?.dispose();
-    _focusNode2?.dispose();
   }
 }
