@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moviesapptv1/pages/player/player_page.dart';
-import 'package:moviesapptv1/pages/widgets/title_widget.dart';
+import 'package:moviesapptv1/pages/player/player_mob_page.dart';
 
 class DetailsPage extends StatelessWidget {
   static var routeName = "/details";
@@ -13,6 +12,7 @@ class DetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     var imgUrl =
         "https://www.themoviedb.org/t/p/w300_and_h450_bestv2_filter(blur)/z9a3b7DePtdo2E8NzyPwoGHGsYk.jpg";
     var argumentsObj = ModalRoute.of(context)?.settings.arguments;
@@ -20,48 +20,60 @@ class DetailsPage extends StatelessWidget {
       Map? arguments = argumentsObj as Map;
       imgUrl = arguments["imageUrl"]!;
     }
-
     return WillPopScope(
       onWillPop: () {
         Navigator.of(context).pop(true);
         return Future.value(true);
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Details"),
-          centerTitle: true,
-        ),
-        body: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                TitleWidget(imageUrl: imgUrl),
-                InkWell(
-                  autofocus: true,
-                  focusColor: Colors.red,
-                  highlightColor: Colors.white,
-                  hoverColor: Colors.orange,
-                  onTap: () {
-                    Navigator.pushNamed(context, PlayerPage.routeName);
-                  },
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.play_arrow,
-                        color: Colors.white,
-                        size: 30.0,
-                      ),
-                      Text(
-                        "Assistir",
-                        style: Theme.of(context).textTheme.button,
-                      )
-                    ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                width: width,
+                height: 540 / 2,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: FittedBox(
+                    fit: BoxFit.fill,
+                    child: Image.network(imgUrl.replaceAll('50.jpg', '52.jpg')),
                   ),
                 ),
-              ],
-            ),
+              ),
+              InkWell(
+                autofocus: true,
+                focusColor: Colors.orangeAccent,
+                highlightColor: Colors.orangeAccent,
+                hoverColor: Colors.orangeAccent,
+                onTap: () {
+                  Navigator.pushNamed(context, PlayerMobPage.routeName);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    color: Colors.orangeAccent,
+                    width: 180,
+                    height: 60,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(
+                          Icons.play_arrow,
+                          color: Colors.white,
+                          size: 30.0,
+                        ),
+                        Text(
+                          "Assistir",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20.0),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

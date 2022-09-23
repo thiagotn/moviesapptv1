@@ -1,5 +1,19 @@
+import 'dart:math';
+
+getRandomVideoUrl() => mockData["items"][generateRandom(0, 3)]["trailer_url"];
+
+int generateRandom(int min, int max) {
+  return min + Random().nextInt(max - min);
+}
+
 Map<String, dynamic> mockData = {
   "items": [
+    {
+      "title": "Trailer ",
+      "image": "images/rio_from_above_poster.jpg",
+      "trailer_url":
+          "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    },
     {
       "title": "Rio from Above",
       "image": "images/rio_from_above_poster.jpg",
