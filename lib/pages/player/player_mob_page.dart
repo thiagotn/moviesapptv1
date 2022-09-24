@@ -1,6 +1,6 @@
 import 'package:better_player/better_player.dart';
 import 'package:flutter/material.dart';
-import 'package:moviesapptv1/utils/mock_data.dart';
+// import 'package:moviesapptv1/utils/mock_data.dart';
 
 class PlayerMobPage extends StatelessWidget {
   static var routeName = "/playermob";
@@ -12,8 +12,8 @@ class PlayerMobPage extends StatelessWidget {
       body: AspectRatio(
         aspectRatio: 16 / 9,
         child: BetterPlayer.network(
-          getRandomVideoUrl(),
-          // "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+          // getRandomVideoUrl(),
+          "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
           betterPlayerConfiguration: const BetterPlayerConfiguration(
             aspectRatio: 16 / 9,
             autoPlay: true,
