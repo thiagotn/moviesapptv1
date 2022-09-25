@@ -40,7 +40,9 @@ class SimpleCarouselWidget extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: getImages(type)
-                .map((item) => TitleWidget(imageUrl: item))
+                .map(
+                  (item) => TitleWidget(imageUrl: item),
+                )
                 .toList(),
           ),
         ),

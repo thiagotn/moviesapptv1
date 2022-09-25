@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moviesapptv1/pages/pages/movies/movies_page.dart';
+import 'package:moviesapptv1/pages/movies/movies_page.dart';
 
 class SplashPage extends StatelessWidget {
   static var routeName = "/";

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:moviesapptv1/config/theme.dart';
 import 'package:moviesapptv1/pages/details/details_page.dart';
-import 'package:moviesapptv1/pages/pages/movies/movies_page.dart';
+import 'package:moviesapptv1/pages/movies/movies_page.dart';
 import 'package:moviesapptv1/pages/player/player_mob_page.dart';
 import 'package:moviesapptv1/pages/splash/splash_page.dart';
 

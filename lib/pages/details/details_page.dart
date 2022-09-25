@@ -2,24 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:moviesapptv1/pages/player/player_mob_page.dart';
 
 class DetailsPage extends StatelessWidget {
-  static var routeName = "/details";
-  final String? imageUrl;
+  static const routeName = "/details";
 
   const DetailsPage({
     Key? key,
-    this.imageUrl,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    var imgUrl =
-        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2_filter(blur)/z9a3b7DePtdo2E8NzyPwoGHGsYk.jpg";
-    var argumentsObj = ModalRoute.of(context)?.settings.arguments;
-    if (argumentsObj != null) {
-      Map? arguments = argumentsObj as Map;
-      imgUrl = arguments["imageUrl"]!;
-    }
+    double height = 600;
+
+    final args = ModalRoute.of(context)!.settings.arguments as Map;
+    String imgUrl = args['imgUrl'];
+
     return WillPopScope(
       onWillPop: () {
         Navigator.of(context).pop(true);
@@ -31,12 +27,14 @@ class DetailsPage extends StatelessWidget {
             children: [
               SizedBox(
                 width: width,
-                height: 540 / 2,
+                height: height,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: FittedBox(
                     fit: BoxFit.fill,
-                    child: Image.network(imgUrl.replaceAll('50.jpg', '52.jpg')),
+                    child: Image.network(
+                      imgUrl.replaceAll('50.jpg', '52.jpg'),
+                    ),
                   ),
                 ),
               ),
