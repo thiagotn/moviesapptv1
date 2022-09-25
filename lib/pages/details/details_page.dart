@@ -11,7 +11,7 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = 600;
+    double height = MediaQuery.of(context).size.height * 0.4;
 
     final args = ModalRoute.of(context)!.settings.arguments as Map;
     String imgUrl = args['imgUrl'];
@@ -30,10 +30,13 @@ class DetailsPage extends StatelessWidget {
                 height: height,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: FittedBox(
-                    fit: BoxFit.fill,
-                    child: Image.network(
-                      imgUrl.replaceAll('50.jpg', '52.jpg'),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: FittedBox(
+                      fit: BoxFit.fill,
+                      child: Image.network(
+                        imgUrl.replaceAll('50.jpg', '52.jpg'),
+                      ),
                     ),
                   ),
                 ),

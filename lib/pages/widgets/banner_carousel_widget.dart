@@ -9,7 +9,7 @@ class BannerCarouselWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = 600;
+    double height = MediaQuery.of(context).size.height * 0.4;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,6 +32,9 @@ class BannerCarouselWidget extends StatelessWidget {
                         },
                       );
                     },
+                    customBorder: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
                     focusColor: Colors.orangeAccent,
                     hoverColor: Colors.orangeAccent,
                     child: SizedBox(
@@ -39,9 +42,12 @@ class BannerCarouselWidget extends StatelessWidget {
                       height: height,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: FittedBox(
-                          fit: BoxFit.fill,
-                          child: Image.network(item),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: FittedBox(
+                            fit: BoxFit.fill,
+                            child: Image.network(item),
+                          ),
                         ),
                       ),
                     ),

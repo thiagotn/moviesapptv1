@@ -9,6 +9,7 @@ class MoviesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 960x540
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
@@ -17,6 +18,10 @@ class MoviesPage extends StatelessWidget {
         child: Column(
           children: [
             const BannerCarouselWidget(),
+            Align(
+              alignment: Alignment.topRight,
+              child: Text("screen: $width X $height"),
+            ),
             const SimpleCarouselWidget(
               name: "Séries",
               type: CarouselType.series,
@@ -32,9 +37,6 @@ class MoviesPage extends StatelessWidget {
             const SimpleCarouselWidget(
               name: "Adicionados recentemente",
               type: CarouselType.mylist,
-            ),
-            Center(
-              child: Text("screen (width X height): $width - $height"),
             ),
           ],
         ),
