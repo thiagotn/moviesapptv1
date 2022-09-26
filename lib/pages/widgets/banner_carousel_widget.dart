@@ -10,7 +10,7 @@ class BannerCarouselWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width *
         MediaQuery.of(context).devicePixelRatio;
-    double height = MediaQuery.of(context).size.height * 0.4;
+    double height = MediaQuery.of(context).size.height * 0.40;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -19,7 +19,7 @@ class BannerCarouselWidget extends StatelessWidget {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: getBanners()
+            children: getBanners(width: width, height: height)
                 .map(
                   (item) => InkWell(
                     onTap: () {
@@ -33,9 +33,6 @@ class BannerCarouselWidget extends StatelessWidget {
                         },
                       );
                     },
-                    customBorder: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
                     focusColor: Colors.orangeAccent,
                     hoverColor: Colors.orangeAccent,
                     child: SizedBox(
@@ -43,12 +40,9 @@ class BannerCarouselWidget extends StatelessWidget {
                       height: height,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: FittedBox(
-                            fit: BoxFit.fill,
-                            child: Image.network(item),
-                          ),
+                        child: FittedBox(
+                          fit: BoxFit.fill,
+                          child: Image.network(item),
                         ),
                       ),
                     ),
@@ -61,10 +55,13 @@ class BannerCarouselWidget extends StatelessWidget {
     );
   }
 
-  List<String> getBanners() => [
-        'https://thumb.mais.uol.com.br/collectionThumb/701-52.jpg',
-        'https://thumb.mais.uol.com.br/collectionThumb/699-52.jpg',
-        'https://thumb.mais.uol.com.br/collectionThumb/695-52.jpg',
-        'https://thumb.mais.uol.com.br/collectionThumb/696-52.jpg',
+  List<String> getBanners({required double width, required double height}) => [
+        'https://thumb.mais.uol.com.br/collectionThumb/701-52.jpg?${resizeParams(width: width, height: height)}',
+        'https://thumb.mais.uol.com.br/collectionThumb/699-52.jpg?${resizeParams(width: width, height: height)}',
+        'https://thumb.mais.uol.com.br/collectionThumb/695-52.jpg?${resizeParams(width: width, height: height)}',
+        'https://thumb.mais.uol.com.br/collectionThumb/696-52.jpg?${resizeParams(width: width, height: height)}',
       ];
+
+  String resizeParams({required double width, required double height}) =>
+      '?resize=${width.toInt()}x${height.toInt()}&align=right&valign=bottom';
 }

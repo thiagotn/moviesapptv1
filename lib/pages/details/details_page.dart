@@ -30,13 +30,10 @@ class DetailsPage extends StatelessWidget {
                 height: height,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: FittedBox(
-                      fit: BoxFit.fill,
-                      child: Image.network(
-                        imgUrl.replaceAll('50.jpg', '52.jpg'),
-                      ),
+                  child: FittedBox(
+                    fit: BoxFit.fill,
+                    child: Image.network(
+                      imgUrl.replaceAll('50.jpg', '52.jpg'),
                     ),
                   ),
                 ),
@@ -53,8 +50,8 @@ class DetailsPage extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     color: Colors.orangeAccent,
-                    width: 180,
-                    height: 60,
+                    width: 173,
+                    height: 40,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
