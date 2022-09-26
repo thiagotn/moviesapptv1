@@ -11,14 +11,8 @@ class TitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // double width = 201;
-    // double height = 283;
-
-    // double width = 150;
-    // double height = 225;
-
-    double width = 130;
-    double height = 200;
+    double width = 150;
+    double height = 225;
 
     return InkWell(
       onTap: () {
@@ -27,13 +21,14 @@ class TitleWidget extends StatelessWidget {
         });
       },
       customBorder: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(4.0),
       ),
       focusColor: Colors.orange,
       highlightColor: Colors.white,
       hoverColor: Colors.orange,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding:
+            const EdgeInsets.only(left: 8.0, right: 8.0, top: 4.0, bottom: 4.0),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(8.0),
           child: Image.network(
