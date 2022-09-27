@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:moviesapptv1/pages/movie/movie_bloc.dart';
 import 'package:moviesapptv1/pages/player/player_mob_page.dart';
 import 'package:moviesapptv1/pages/widgets/carousel_widget.dart';
-import 'package:moviesapptv1/pages/widgets/simple_carousel_widget.dart';
 import 'package:moviesapptv1/repository/mocks.dart';
 import 'package:provider/provider.dart';
 
