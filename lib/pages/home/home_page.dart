@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moviesapptv1/pages/widgets/banner_carousel_widget.dart';
 import 'package:moviesapptv1/pages/widgets/simple_carousel_widget.dart';
+import 'package:moviesapptv1/repository/mocks.dart';
 
 class HomePage extends StatelessWidget {
   static const routeName = "/home";

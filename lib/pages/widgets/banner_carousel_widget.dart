@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moviesapptv1/pages/details/details_page.dart';
+import 'package:moviesapptv1/pages/series/serie_page.dart';
 
 class BannerCarouselWidget extends StatelessWidget {
   const BannerCarouselWidget({
@@ -25,7 +25,7 @@ class BannerCarouselWidget extends StatelessWidget {
                     onTap: () {
                       Navigator.pushNamed(
                         context,
-                        DetailsPage.routeName,
+                        SeriePage.routeName,
                         arguments: {
                           "imgUrl": item,
                           "width": width,

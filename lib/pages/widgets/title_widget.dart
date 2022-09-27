@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moviesapptv1/pages/details/details_page.dart';
+import 'package:moviesapptv1/pages/series/serie_page.dart';
 import 'package:moviesapptv1/utils/proportional_dimensions.dart';
 
 class TitleWidget extends StatelessWidget {
@@ -17,7 +17,7 @@ class TitleWidget extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, DetailsPage.routeName, arguments: {
+        Navigator.pushNamed(context, SeriePage.routeName, arguments: {
           "imgUrl": imageUrl,
         });
       },
