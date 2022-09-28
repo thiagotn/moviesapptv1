@@ -11,9 +11,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 960x540
-    double width = MediaQuery.of(context).size.width *
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
+    double realWidth = MediaQuery.of(context).size.width *
         MediaQuery.of(context).devicePixelRatio;
-    double height = MediaQuery.of(context).size.height *
+    double realHeight = MediaQuery.of(context).size.height *
         MediaQuery.of(context).devicePixelRatio;
 
     return Scaffold(
@@ -25,7 +28,8 @@ class HomePage extends StatelessWidget {
             const CarouselBannerWidget(),
             Align(
               alignment: Alignment.topRight,
-              child: Text("screen: $width X $height"),
+              child: Text(
+                  "screen: $width X $height - real: $realWidth X $realHeight"),
             ),
             const SimpleCarouselWidget(
               name: "Séries",
