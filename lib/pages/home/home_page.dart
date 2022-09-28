@@ -10,10 +10,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 960x540
+    // 960x540 -
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
+    // 1920x1080
     double realWidth = MediaQuery.of(context).size.width *
         MediaQuery.of(context).devicePixelRatio;
     double realHeight = MediaQuery.of(context).size.height *
