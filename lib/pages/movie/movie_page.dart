@@ -38,7 +38,9 @@ class _MoviePageState extends State<MoviePage>
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width *
         MediaQuery.of(context).devicePixelRatio;
-    double height = 500; //MediaQuery.of(context).size.height * 0.4;
+    double height = MediaQuery.of(context).size.height *
+        MediaQuery.of(context).devicePixelRatio *
+        0.3;
 
     var args = ModalRoute.of(context)!.settings.arguments as Map;
     String imgUrl = args['imgUrl'];
