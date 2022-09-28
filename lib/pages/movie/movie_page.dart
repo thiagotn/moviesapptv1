@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moviesapptv1/pages/movie/movie_bloc.dart';
 import 'package:moviesapptv1/pages/player/player_mob_page.dart';
 import 'package:moviesapptv1/pages/widgets/carousel_widget.dart';
+import 'package:moviesapptv1/pages/widgets/flat_button_gradient_widget.dart';
 import 'package:moviesapptv1/repository/mocks.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +23,7 @@ class _MoviePageState extends State<MoviePage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
     _scrollController = ScrollController();
   }
 
@@ -37,16 +38,12 @@ class _MoviePageState extends State<MoviePage>
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width *
         MediaQuery.of(context).devicePixelRatio;
-    double height = MediaQuery.of(context).size.height * 0.4;
+    double height = 500; //MediaQuery.of(context).size.height * 0.4;
 
     var args = ModalRoute.of(context)!.settings.arguments as Map;
     String imgUrl = args['imgUrl'];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Movie Page"),
-        centerTitle: true,
-      ),
       body: Consumer<MovieBloc>(
         builder: (context, bloc, child) {
           return NestedScrollView(
@@ -55,9 +52,8 @@ class _MoviePageState extends State<MoviePage>
             headerSliverBuilder: (context, value) {
               return [
                 SliverToBoxAdapter(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Stack(
+                    alignment: Alignment.bottomLeft,
                     children: [
                       SizedBox(
                         width: width,
@@ -72,41 +68,21 @@ class _MoviePageState extends State<MoviePage>
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: InkWell(
-                          autofocus: true,
-                          focusColor: Colors.orangeAccent,
-                          highlightColor: Colors.orangeAccent,
-                          hoverColor: Colors.orangeAccent,
-                          onTap: () {
+                      Container(
+                        padding: const EdgeInsets.only(
+                          left: 20,
+                          right: 20,
+                          bottom: 40,
+                        ),
+                        child: FlatButtonGradient(
+                          width: 200,
+                          text: "Assistir",
+                          onPressed: () {
                             Navigator.pushNamed(
-                                context, PlayerMobPage.routeName);
+                              context,
+                              PlayerMobPage.routeName,
+                            );
                           },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              color: Colors.orangeAccent,
-                              width: 200,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Icon(
-                                    Icons.play_arrow,
-                                    color: Colors.white,
-                                    size: 30.0,
-                                  ),
-                                  Text(
-                                    "Assistir",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20.0),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
                         ),
                       ),
                     ],

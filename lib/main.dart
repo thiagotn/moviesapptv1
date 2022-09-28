@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:moviesapptv1/config/theme.dart';
 import 'package:moviesapptv1/pages/details/details_page.dart';
 import 'package:moviesapptv1/pages/home/home_page.dart';
+import 'package:moviesapptv1/pages/movie/movie_bloc.dart';
 import 'package:moviesapptv1/pages/movie/movie_page.dart';
 import 'package:moviesapptv1/pages/player/player_mob_page.dart';
 import 'package:moviesapptv1/pages/series/serie_bloc.dart';
@@ -27,6 +28,9 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider<SerieBloc>.value(
             value: SerieBloc(),
+          ),
+          ChangeNotifierProvider<MovieBloc>.value(
+            value: MovieBloc(),
           ),
         ],
         child: MaterialApp(

@@ -11,6 +11,8 @@ class CarouselWidget extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: items
             .map(
               (item) => TitleWidget(imageUrl: item),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moviesapptv1/pages/widgets/banner_carousel_widget.dart';
+import 'package:moviesapptv1/pages/widgets/carousel_banners_widget.dart';
 import 'package:moviesapptv1/pages/widgets/simple_carousel_widget.dart';
 import 'package:moviesapptv1/repository/mocks.dart';
 
@@ -18,33 +18,32 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              const BannerCarouselWidget(),
-              Align(
-                alignment: Alignment.topRight,
-                child: Text("screen: $width X $height"),
-              ),
-              const SimpleCarouselWidget(
-                name: "Séries",
-                type: CarouselType.series,
-              ),
-              const SimpleCarouselWidget(
-                name: "Filmes",
-                type: CarouselType.movies,
-              ),
-              const SimpleCarouselWidget(
-                name: "Em alta",
-                type: CarouselType.popular,
-              ),
-              const SimpleCarouselWidget(
-                name: "Adicionados recentemente",
-                type: CarouselType.mylist,
-              ),
-            ],
-          ),
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const CarouselBannerWidget(),
+            Align(
+              alignment: Alignment.topRight,
+              child: Text("screen: $width X $height"),
+            ),
+            const SimpleCarouselWidget(
+              name: "Séries",
+              type: CarouselType.series,
+            ),
+            const SimpleCarouselWidget(
+              name: "Filmes",
+              type: CarouselType.movies,
+            ),
+            const SimpleCarouselWidget(
+              name: "Em alta",
+              type: CarouselType.popular,
+            ),
+            const SimpleCarouselWidget(
+              name: "Adicionados recentemente",
+              type: CarouselType.mylist,
+            ),
+          ],
         ),
       ),
     );

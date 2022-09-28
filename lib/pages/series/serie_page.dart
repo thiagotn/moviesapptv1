@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moviesapptv1/pages/player/player_mob_page.dart';
 import 'package:moviesapptv1/pages/series/serie_bloc.dart';
 import 'package:moviesapptv1/pages/widgets/carousel_widget.dart';
+import 'package:moviesapptv1/pages/widgets/flat_button_gradient_widget.dart';
 import 'package:moviesapptv1/repository/mocks.dart';
 import 'package:provider/provider.dart';
 
@@ -43,10 +44,6 @@ class _SeriePageState extends State<SeriePage>
     String imgUrl = args['imgUrl'];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Serie Page"),
-        centerTitle: true,
-      ),
       body: Consumer<SerieBloc>(
         builder: (context, bloc, child) {
           return NestedScrollView(
@@ -74,39 +71,15 @@ class _SeriePageState extends State<SeriePage>
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: InkWell(
-                          autofocus: true,
-                          focusColor: Colors.orangeAccent,
-                          highlightColor: Colors.orangeAccent,
-                          hoverColor: Colors.orangeAccent,
-                          onTap: () {
+                        child: FlatButtonGradient(
+                          width: 200,
+                          text: "Assistir",
+                          onPressed: () {
                             Navigator.pushNamed(
-                                context, PlayerMobPage.routeName);
+                              context,
+                              PlayerMobPage.routeName,
+                            );
                           },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              color: Colors.orangeAccent,
-                              width: 200,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Icon(
-                                    Icons.play_arrow,
-                                    color: Colors.white,
-                                    size: 30.0,
-                                  ),
-                                  Text(
-                                    "Continuar",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20.0),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
                         ),
                       ),
                     ],
