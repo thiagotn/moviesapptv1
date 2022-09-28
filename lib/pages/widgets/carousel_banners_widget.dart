@@ -33,11 +33,11 @@ class CarouselBannerWidget extends StatelessWidget {
               itemCount: getBanners().length,
               itemBuilder: (ctx, i) {
                 BannerItemWidget carouselBannerItemWidget = BannerItemWidget(
-                    title: "Lorem ipsum dolor sit amet, consetetur sadipscing",
+                    title: "O Vampiro de Niterói",
                     type: "serie",
                     imageUrl: getBanners()[i],
                     sinopse:
-                        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed dia.");
+                        "Suspense, Documentários, Suspense e terror, 1 temporada");
                 return carouselBannerItemWidget;
               },
             ),

@@ -105,7 +105,7 @@ class BannerItemWidget extends StatelessWidget {
                         ),
                       ),
                       TitleCensorshipWidget(
-                        censorship: "L",
+                        censorship: "16",
                         height: 18,
                         width: 18,
                         padding: const EdgeInsets.only(left: 5, right: 5),
