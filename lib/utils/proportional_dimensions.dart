@@ -11,18 +11,21 @@ final proportionHeightToWidth =
 
 class ProportionalDimensions {
   static getHeight(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.of(context).size.width *
+        MediaQuery.of(context).devicePixelRatio;
     final double width = screenWidth / (screenWidth / originalWidth).round();
     return width * proportionHeightToWidth;
   }
 
   static getWidth(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.of(context).size.width *
+        MediaQuery.of(context).devicePixelRatio;
     return screenWidth / (screenWidth / originalWidth).round();
   }
 
   static getRatio(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.of(context).size.width *
+        MediaQuery.of(context).devicePixelRatio;
     final double width = screenWidth / (screenWidth / originalWidth).round();
     final double height = width * proportionHeightToWidth;
     return width / (height + textBoxHeight);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moviesapptv1/pages/movie/movie_page.dart';
+import 'package:moviesapptv1/utils/proportional_dimensions.dart';
 
 class TitleWidget extends StatelessWidget {
   final String imageUrl;
@@ -11,8 +12,13 @@ class TitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = 201;
-    double height = 283;
+    // double width = 201;
+    // double height = 283;
+
+    double width = ProportionalDimensions.getWidth(context);
+    double height = ProportionalDimensions.getHeight(context);
+
+    print("$width X $height");
 
     return InkWell(
       onTap: () {
@@ -27,8 +33,8 @@ class TitleWidget extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Image.network(
           imageUrl,
-          width: width,
-          height: height,
+          width: ProportionalDimensions.getWidth(context),
+          height: ProportionalDimensions.getHeight(context),
         ),
       ),
     );
