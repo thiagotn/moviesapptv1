@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moviesapptv1/pages/movie/movie_bloc.dart';
 import 'package:moviesapptv1/pages/player/player_mob_page.dart';
-import 'package:moviesapptv1/pages/widgets/carousel_widget.dart';
-import 'package:moviesapptv1/pages/widgets/flat_button_gradient_widget.dart';
+import 'package:moviesapptv1/pages/widgets/button_widget.dart';
+import 'package:moviesapptv1/pages/widgets/simple_carousel_widget.dart';
 import 'package:moviesapptv1/repository/mocks.dart';
 import 'package:provider/provider.dart';
 
@@ -36,11 +36,15 @@ class _MoviePageState extends State<MoviePage>
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width *
+    // 960x540 -
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
+    // 1920x1080
+    double realWidth = MediaQuery.of(context).size.width *
         MediaQuery.of(context).devicePixelRatio;
-    double height = MediaQuery.of(context).size.height *
-        MediaQuery.of(context).devicePixelRatio *
-        0.3;
+    double realHeight = MediaQuery.of(context).size.height *
+        MediaQuery.of(context).devicePixelRatio;
 
     var args = ModalRoute.of(context)!.settings.arguments as Map;
     String imgUrl = args['imgUrl'];
@@ -55,36 +59,72 @@ class _MoviePageState extends State<MoviePage>
               return [
                 SliverToBoxAdapter(
                   child: Stack(
-                    alignment: Alignment.bottomLeft,
+                    // clipBehavior: Clip.none,
+                    // fit: StackFit.passthrough,
                     children: [
-                      SizedBox(
-                        width: width,
-                        height: height,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: FittedBox(
-                            fit: BoxFit.fill,
-                            child: Image.network(
-                              imgUrl.replaceAll('50.jpg', '52.jpg'),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          foregroundDecoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.transparent,
+                                Colors.transparent,
+                                Colors.transparent,
+                                Colors.black
+                              ],
+                              begin: Alignment.bottomRight,
+                              end: Alignment.bottomLeft,
+                              stops: [0, 0.2, 0.2, 0.9],
                             ),
                           ),
+                          child: Image.network(
+                              imgUrl.replaceAll('50.jpg', '52.jpg')),
                         ),
                       ),
-                      Container(
-                        padding: const EdgeInsets.only(
-                          left: 20,
-                          right: 20,
-                          bottom: 40,
+                      Positioned(
+                        top: width * 0.2, //220,
+                        left: 30,
+                        child: const Text(
+                          "O Vampiro de Niterói",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 32,
+                              color: Colors.white),
                         ),
-                        child: FlatButtonGradient(
-                          width: 200,
-                          text: "Assistir",
-                          onPressed: () {
-                            Navigator.pushNamed(
-                              context,
-                              PlayerMobPage.routeName,
-                            );
-                          },
+                      ),
+                      Positioned(
+                        top: width * 0.2 + 50,
+                        left: 30,
+                        child: const Text(
+                          "Um menino sobrevive a um ataque brutal e leva à caçada \na um dos maiores serial killers do Brasil",
+                          style: TextStyle(fontSize: 22, color: Colors.white),
+                        ),
+                      ),
+                      Positioned(
+                        top: width * 0.2 + 120,
+                        left: 30,
+                        child: Row(
+                          children: [
+                            ButtonWidget(
+                              actionName: "Assistir",
+                              buttonColor: Colors.orangeAccent,
+                              textColor: Colors.black,
+                              onTap: () => Navigator.pushNamed(
+                                context,
+                                PlayerMobPage.routeName,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            ButtonWidget(
+                              actionName: "Detalhes",
+                              buttonColor: Colors.grey,
+                              textColor: Colors.white,
+                              onTap: () => debugPrint("Detalhes"),
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -105,24 +145,28 @@ class _MoviePageState extends State<MoviePage>
                 )
               ];
             },
-            body: TabBarView(
-              physics: const NeverScrollableScrollPhysics(),
-              controller: _tabController,
-              children: [
-                ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: getItems().length,
-                  itemBuilder: (ctx, i) {
-                    return Text(getItems()[i]);
-                  },
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CarouselWidget(
-                    items: getImages(CarouselType.movies),
+            body: Expanded(
+              child: TabBarView(
+                physics: const NeverScrollableScrollPhysics(),
+                controller: _tabController,
+                children: [
+                  ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: getItems().length,
+                    itemBuilder: (ctx, i) {
+                      return Text(getItems()[i]);
+                    },
                   ),
-                ),
-              ],
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: SingleChildScrollView(
+                      child: SimpleCarouselWidget(
+                        type: CarouselType.movies,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         },

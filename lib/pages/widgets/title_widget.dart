@@ -22,6 +22,7 @@ class TitleWidget extends StatelessWidget {
 
     return InkWell(
       onTap: () {
+        print("test...");
         Navigator.pushNamed(context, MoviePage.routeName, arguments: {
           "imgUrl": imageUrl,
         });

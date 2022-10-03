@@ -4,6 +4,7 @@ enum CarouselType {
   popular,
   mylist,
   family,
+  tmdb,
 }
 
 List<String> getImages(CarouselType type) {
@@ -16,8 +17,10 @@ List<String> getImages(CarouselType type) {
       return getPopularImages(shuffle: true);
     case CarouselType.mylist:
       return getPopularImages(shuffle: true);
-    default:
+    case CarouselType.tmdb:
       return getTitleImages();
+    case CarouselType.family:
+      return getPopularImages(shuffle: true);
   }
 }
 
@@ -92,3 +95,10 @@ List<String> getPopularImages({bool shuffle = false}) {
   if (shuffle) images.shuffle();
   return images;
 }
+
+List<String> getBanners() => [
+      'https://thumb.mais.uol.com.br/collectionThumb/701-52.jpg',
+      'https://thumb.mais.uol.com.br/collectionThumb/699-52.jpg',
+      'https://thumb.mais.uol.com.br/collectionThumb/695-52.jpg',
+      'https://thumb.mais.uol.com.br/collectionThumb/696-52.jpg',
+    ];

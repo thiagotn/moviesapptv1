@@ -14,17 +14,30 @@ class SimpleCarouselWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        CarouselName(
-          name: name,
-        ),
-        CarouselWidget(
-          items: getImages(type),
-        ),
-      ],
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: (name != null)
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                CarouselName(
+                  name: name,
+                ),
+                CarouselWidget(
+                  items: getImages(type),
+                ),
+              ],
+            )
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                CarouselWidget(
+                  items: getImages(type),
+                ),
+              ],
+            ),
     );
   }
 }

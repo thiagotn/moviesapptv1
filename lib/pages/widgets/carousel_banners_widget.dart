@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moviesapptv1/pages/widgets/banner_item_widget.dart';
+import 'package:moviesapptv1/repository/mocks.dart';
 
 class CarouselBannerWidget extends StatelessWidget {
   const CarouselBannerWidget({
@@ -49,11 +50,4 @@ class CarouselBannerWidget extends StatelessWidget {
       ),
     );
   }
-
-  List<String> getBanners() => [
-        'https://thumb.mais.uol.com.br/collectionThumb/701-52.jpg',
-        'https://thumb.mais.uol.com.br/collectionThumb/699-52.jpg',
-        'https://thumb.mais.uol.com.br/collectionThumb/695-52.jpg',
-        'https://thumb.mais.uol.com.br/collectionThumb/696-52.jpg',
-      ];
 }
