@@ -29,14 +29,12 @@ class _HomePageState extends State<HomePage> {
 
     const double paddingLeft = 50;
 
-    getBanners().shuffle();
-    String randomImg = getBanners().first;
+    String randomImg = getRandomBanner();
 
     return Scaffold(
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Stack(

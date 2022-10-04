@@ -1,3 +1,5 @@
+import 'dart:math';
+
 enum CarouselType {
   series,
   movies,
@@ -102,3 +104,8 @@ List<String> getBanners() => [
       'https://thumb.mais.uol.com.br/collectionThumb/695-52.jpg',
       'https://thumb.mais.uol.com.br/collectionThumb/696-52.jpg',
     ];
+
+String getRandomBanner() {
+  final random = Random();
+  return getBanners()[random.nextInt(getBanners().length)];
+}
