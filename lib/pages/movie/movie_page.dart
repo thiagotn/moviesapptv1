@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moviesapptv1/pages/movie/movie_bloc.dart';
 import 'package:moviesapptv1/pages/player/player_mob_page.dart';
 import 'package:moviesapptv1/pages/widgets/button_widget.dart';
+import 'package:moviesapptv1/pages/widgets/details_widget.dart';
 import 'package:moviesapptv1/pages/widgets/simple_carousel_widget.dart';
 import 'package:moviesapptv1/repository/mocks.dart';
 import 'package:provider/provider.dart';
@@ -64,22 +65,24 @@ class _MoviePageState extends State<MoviePage>
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          foregroundDecoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Colors.transparent,
-                                Colors.transparent,
-                                Colors.transparent,
-                                Colors.black
-                              ],
-                              begin: Alignment.bottomRight,
-                              end: Alignment.bottomLeft,
-                              stops: [0, 0.2, 0.2, 0.9],
+                        child: Focus(
+                          child: Container(
+                            foregroundDecoration: const BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.transparent,
+                                  Colors.transparent,
+                                  Colors.transparent,
+                                  Colors.black
+                                ],
+                                begin: Alignment.bottomRight,
+                                end: Alignment.bottomLeft,
+                                stops: [0, 0.2, 0.2, 0.9],
+                              ),
                             ),
+                            child: Image.network(
+                                imgUrl.replaceAll('50.jpg', '52.jpg')),
                           ),
-                          child: Image.network(
-                              imgUrl.replaceAll('50.jpg', '52.jpg')),
                         ),
                       ),
                       Positioned(
@@ -118,12 +121,6 @@ class _MoviePageState extends State<MoviePage>
                             const SizedBox(
                               width: 15,
                             ),
-                            ButtonWidget(
-                              actionName: "Detalhes",
-                              buttonColor: Colors.grey,
-                              textColor: Colors.white,
-                              onTap: () => debugPrint("Detalhes"),
-                            ),
                           ],
                         ),
                       ),
@@ -145,28 +142,42 @@ class _MoviePageState extends State<MoviePage>
                 )
               ];
             },
-            body: Expanded(
-              child: TabBarView(
-                physics: const NeverScrollableScrollPhysics(),
-                controller: _tabController,
-                children: [
-                  ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: getItems().length,
-                    itemBuilder: (ctx, i) {
-                      return Text(getItems()[i]);
-                    },
-                  ),
-                  const Padding(
+            body: TabBarView(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: _tabController,
+              children: const [
+                Padding(
                     padding: EdgeInsets.all(8.0),
                     child: SingleChildScrollView(
-                      child: SimpleCarouselWidget(
-                        type: CarouselType.movies,
+                      child: Focus(
+                        child: DetailsWidget(
+                          title: "O Vampiro de Niterói",
+                          description:
+                              "Um menino sobrevive a um ataque brutal e leva à caçada \na um dos maiores serial killers do Brasil",
+                          genre: "Documentário",
+                          year: 2020,
+                          rating: "16",
+                        ),
                       ),
+                    )
+
+                    // ListView.builder(
+                    //   physics: const NeverScrollableScrollPhysics(),
+                    //   itemCount: getItems().length,
+                    //   itemBuilder: (ctx, i) {
+                    //     return Text(getItems()[i]);
+                    //   },
+                    // ),
+                    ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: SingleChildScrollView(
+                    child: SimpleCarouselWidget(
+                      type: CarouselType.movies,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         },

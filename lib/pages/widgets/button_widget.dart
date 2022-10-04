@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ButtonWidget extends StatelessWidget {
+class ButtonWidget extends StatefulWidget {
   final String actionName; // "Assistir"
   final Color buttonColor; // Colors.orangeAccent
   final Color textColor; // Colors.black
@@ -15,25 +15,37 @@ class ButtonWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<ButtonWidget> createState() => _ButtonWidgetState();
+}
+
+class _ButtonWidgetState extends State<ButtonWidget> {
+  @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => onTap(),
-      child: Container(
-        width: 160,
-        height: 45,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: buttonColor,
-        ),
-        child: Center(
-            child: Text(
-          actionName,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-            color: textColor,
+      focusColor: Colors.orangeAccent,
+      highlightColor: Colors.orangeAccent,
+      hoverColor: Colors.orangeAccent,
+      onTap: () => widget.onTap(),
+      child: Focus(
+        onFocusChange: ((value) =>
+            debugPrint("(${widget.actionName}) FocusChanged: $value")),
+        child: Container(
+          width: 160,
+          height: 45,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: widget.buttonColor,
           ),
-        )),
+          child: Center(
+              child: Text(
+            widget.actionName,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              color: widget.textColor,
+            ),
+          )),
+        ),
       ),
     );
   }
